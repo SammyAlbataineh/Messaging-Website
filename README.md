@@ -1,3 +1,21 @@
 # Messaging Website
 
-I am building a messaging website to further imrpove my fullstack skills. My frontend will consist of typescript and react, and my backend will be Node.js and websockets. I will use mongoDB and postgreSQL 
+I am building a messaging website to improve my full-stack skills.
+
+## Tech Stack
+
+**Frontend:**
+- TypeScript
+- React
+
+**Backend:**
+- Node.js
+- WebSockets
+
+**Databases:**
+- MongoDB
+- PostgreSQL
+
+---
+
+This project focuses on real-time messaging using WebSockets, full authentication, and storing both user profiles and messages efficiently using relational and NoSQL databases.
