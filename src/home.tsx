@@ -1,7 +1,15 @@
-export default function Home() {
+import { useNavigate } from "react-router-dom";
+
+function Home() {
+    const navigate = useNavigate(); 
+    const goToSignup = () => {
+        navigate("/signup"); 
+    }
     return (
-        <>
-            <h1> Hello {localStorage.getItem("userName")} </h1>
-        </>
+        <div> 
+            <h1> Messaging </h1>
+            <button onClick={goToSignup}> Sign Up </button>
+        </div>
     )
 }
+export default Home;
