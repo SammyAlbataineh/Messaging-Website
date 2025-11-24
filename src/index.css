@@ -5,8 +5,18 @@
     align-items: center; 
     color: #695EE0; 
     font-family: 'Trebuchet MS', sans-serif;
-    border: 1px solid #695EE0; 
+    border: 3px solid #4066bd; 
     width: 400px;   
   	margin: 0 auto;  
-  	padding: 20px;  
+  	padding: 20px;
+    padding-bottom: 50px;  
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12), 
+              0 4px 12px rgba(0,0,0,0.08);
+}
+#wrapper * {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
 }
