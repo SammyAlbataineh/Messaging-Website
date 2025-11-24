@@ -1,4 +1,4 @@
-import "./App.css"; 
+import "./index.css"; 
 function SignUpPage() {
     return (
         <div id="wrapper"> 
