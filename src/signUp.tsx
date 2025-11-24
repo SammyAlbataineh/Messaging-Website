@@ -14,7 +14,6 @@ function SignUpPage() {
                 <input type="password" id="confirmPassword" name="confirmPassword"/> <br/>
                 <input type="submit" value="Sign Up"/> <br/>
             </form>
-            <h2> Or use google </h2> 
         </div>
     )
 }
