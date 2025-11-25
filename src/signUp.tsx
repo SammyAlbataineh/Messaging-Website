@@ -27,9 +27,9 @@ function SignUpPage() {
             email: email, 
             password: bcrypt.hashSync(password,salt)
         };
-        await fetch("http://localhost:5173/signup", {
+        await fetch("http://localhost:5000/signup", {
             method: "POST",
-            headers: {"Content-Type": "applications/json"},
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(user)
         });
         navigate("/home"); 
