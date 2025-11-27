@@ -1,6 +1,4 @@
 import "./index.css"; 
-import { jwtDecode } from "jwt-decode";
-import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
 function SignUpPage(): JSX.Element {
@@ -37,7 +35,7 @@ function SignUpPage(): JSX.Element {
     return (
         <div id="wrapper"> 
             <h2> Signup </h2>
-            <form  onSubmit={submitted} id="signup"> 
+            <form onSubmit={submitted} id="signup"> 
                 <label htmlFor="username"> Username </label> <br/>
                 <input type="text" id="username" name="username"/> <br/>
                 <label htmlFor="email"> Email </label> <br/>
@@ -48,9 +46,6 @@ function SignUpPage(): JSX.Element {
                 <input type="password" id="confirmPassword" name="confirmPassword"/> <br/>
                 <input type="submit" value="Sign Up"/> <br/>
             </form>
-            <GoogleLogin onSuccess={(credentialResponse: any) => {
-                console.log(jwtDecode(credentialResponse.credential)); 
-            }} onError={() => {console.log("login failed")}}/>
         </div>
     )
 }

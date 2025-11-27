@@ -29,7 +29,7 @@ app.post("/signup", async (req,res) => {
     }
 });
 app.post("/login", async (req,res) => {
-    const {username,email,password} = req.body;
+    const {email,password} = req.body;
     try {
         const result = await pool.query(
             `SELECT * FROM USERS WHERE email = ($1)`,
@@ -55,4 +55,22 @@ app.post("/login", async (req,res) => {
         return res.status(500).json({message: "Server error"})
     }
 });
+app.get("/search", async (req,res) => {
+    const query = req.query.q; 
+    if (!query) {
+        return res.status(400).json({message: "No search query provided"});
+    }
+    try {
+        const result = await pool.query(
+            `SELECT username, email FROM users 
+             WHERE username ILIKE $1 OR email ILIKE $1`,
+            [`%${query}%`]
+        );
+
+        return res.json(result.rows);
+    } catch (err) {
+        console.error(err); 
+        return res.status(500).json({message: "server erorr"})
+    }
+})
 app.listen(5000,() => console.log("Server running on port 5000"));

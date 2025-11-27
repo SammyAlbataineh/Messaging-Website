@@ -20,3 +20,7 @@
     align-items: center;
     padding: 8px;
 }
+#user {
+  display: flex;
+  flex-direction: "column";
+}
