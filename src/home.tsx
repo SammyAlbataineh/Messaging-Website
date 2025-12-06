@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./index.css"
 function Home() {
-  const [username, setUsername] = useState<string | null>(null);
+  const [username, setUsername] = useState<any>(null);
   const [query,setQuery] = useState(""); 
   const [results, setResults] = useState<any[]>([]); 
   const navigate = useNavigate();
@@ -38,8 +38,8 @@ function Home() {
 
     return () => clearTimeout(delayDebounce);
   }, [query]); 
-  function startChat(username: string): void {
-    navigate(`/chat/${username}`);
+  function startChat(username: string, username2: string): void {
+    navigate(`/chat/from/${username2}/to/${username}`);
 
   }
   return (
@@ -59,7 +59,7 @@ function Home() {
       <div>
         {results.length > 0 ? (
           results.map((user, index) => (
-            <button id="user" onClick={() => startChat(user.username)} key={index}>
+            <button id="user" onClick={() => startChat(user.username,username)} key={index}>
               {user.username} 
             </button>
           ))

@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import express from "express"; 
 import cors from "cors"; 
 import { compare } from "bcryptjs";
+import { WebSocketServer } from "ws";
+const wss = new WebSocketServer({ port: 8080 }); 
+const rooms = {}; 
 dotenv.config(); 
 const { Pool } = pg
 const pool = new Pool({
@@ -74,3 +77,35 @@ app.get("/search", async (req,res) => {
     }
 })
 app.listen(5000,() => console.log("Server running on port 5000"));
+wss.on("connection", (socket) => {
+    console.log("user connected");
+    socket.on("message", raw => {
+        const data = JSON.parse(raw);
+        // JOIN ROOM
+        if (data.type === "join") {
+            const { chatId } = data;
+            if (!rooms[chatId]) {
+                rooms[chatId] = { users: new Set(), messages: [] };
+            }
+            rooms[chatId].users.add(socket);
+            return;
+        }
+        if (data.type === "message") {
+            const { chatId, from, message } = data;
+            rooms[chatId].messages.push({ from, message });
+            rooms[chatId].users.forEach(client => {
+                client.send(JSON.stringify({
+                    type: "message",
+                    chatId,
+                    from,
+                    message
+                }));
+            });
+        }
+    });
+    socket.on("close", () => {
+        for (const chatId in rooms) {
+            rooms[chatId].users.delete(socket);
+        }
+    });
+});
