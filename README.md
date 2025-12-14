@@ -13,7 +13,6 @@ I am building a messaging website to improve my full-stack skills.
 - WebSockets
 
 **Databases:**
-- MongoDB
 - PostgreSQL
 
 ---
